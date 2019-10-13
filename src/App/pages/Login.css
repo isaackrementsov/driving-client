@@ -26,10 +26,11 @@
     border-radius: 5px;
 }
 
-.Login input[type=text], input[type=password] {
+.Login input[type=text], .Login input[type=password] {
     background-color: transparent;
     display: block;
     border-color: rgb(140,140,140) !important;
+    color: lightgrey;
     margin: 10px 0;
 }
 
