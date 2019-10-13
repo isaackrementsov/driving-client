@@ -1,0 +1,43 @@
+.balance {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.balance > div {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 40px;
+    margin: 20px;
+    color: grey;
+}
+
+.balance > div:last-child {
+    background-color: white;
+    width: 400px;
+}
+
+.balance h1 {
+    font-size: 120px;
+    margin: 0;
+    font-weight: 200;
+}
+
+.balance p {
+    color: grey;
+}
+
+.balance button {
+    background-color: #7C4DFF;
+    border-style: hidden;
+    color: white;
+    padding: 6px 12px;
+    margin: 10px 0;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 17px;
+}
+
+.card-element {
+    margin: 20px 0;
+}

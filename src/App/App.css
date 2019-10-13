@@ -1,0 +1,106 @@
+.App table {
+    border-collapse: collapse;
+    background-color: white;
+    text-align: left;
+    color: rgb(90,90,90);
+}
+
+.App tr {
+    border: 1px solid lightgrey;
+}
+
+.App th, .App td {
+    padding: 10px;
+}
+
+.App td {
+    color: grey;
+}
+
+.App td button.del {
+    background-color: transparent;
+    color: inherit;
+    border-style: hidden;
+    padding: 0;
+}
+
+.App td button.del svg {
+    height: 22px !important;
+}
+
+.main, .SideBar {
+    top: 7%;
+    position: fixed;
+    display: inline-block;
+}
+
+.main {
+    padding: 20px;
+    left: 220px;
+}
+
+.main .small-inputs {
+    display: inline;
+}
+
+.main .small-inputs input {
+    width: 30px;
+    margin: 0 2px;
+}
+
+.main .ride {
+    background-color: whitesmoke;
+    display: inline;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 20px;
+    font-weight: normal;
+}
+
+.main .ride svg {
+    vertical-align: -5px;
+    height: 22px !important;
+    margin-right: 2px;
+}
+
+.main input, .main select, .main option {
+    padding: 5px 7px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    color: grey;
+    transition: ease-in-out 0.2s;
+}
+
+.main input:focus, .main button:focus, .main select:focus {
+    outline: none;
+    border: 1px #7C4DFF solid;
+    color: #7C4DFF;
+}
+
+.main button.add {
+    padding: 0;
+    background-color: transparent;
+    border-style: hidden;
+    color: grey;
+    margin: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main input[type=submit], button.submit {
+    background-color: #7C4DFF;
+    border-style: hidden;
+    color: white;
+    padding: 6px 12px;
+}
+
+.main input[type=submit].secondary, .main button.secondary {
+    background-color: white;
+    color: #7C4DFF;
+    border: 1px solid #7C4DFF;
+}
+
+.main input[type=submit].secondary:hover, .main button.secondary:hover {
+    color: white;
+    background-color: #7C4DFF;
+}

@@ -1,0 +1,93 @@
+.SideBar {
+    list-style-type: none;
+    background-color: whitesmoke;
+    width: 220px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    height: 93%;
+    background-color: rgb(60,60,60);
+    color: rgb(240,240,240);
+    text-align: left;
+    padding: 5px 0;
+}
+
+.SideBar .ico {
+    height: 18px !important;
+    vertical-align: -2px;
+    padding: 0 2px;
+}
+
+.SideBar .heading {
+    padding: 0 10px;
+    padding-top: 30px;
+}
+
+.SideBar .pic {
+    height: 70px !important;
+    width: 70px !important;
+}
+
+.SideBar .heading h2 {
+    font-weight: 200;
+}
+
+.SideBar a, .SideBar button {
+    color: rgb(240,240,240) !important;
+    text-decoration: none;
+    width: 100%;
+    padding: 9px 12px;
+    display: block;
+    font-size: 15px;
+    transition: ease-in-out 0.2s;
+    text-align: left;
+    background-color: transparent;
+    border-style: hidden;
+    cursor: pointer;
+}
+
+.SideBar a.disabled {
+    color: rgb(220,220,220) !important;
+    font-weight: 200;
+    text-decoration: underline;
+}
+
+.SideBar a.active {
+    background-color: rgba(255,255,255, 0.1);
+}
+
+.SideBar a:visited {
+    color: inherit;
+}
+
+.SideBar a:hover:not(.disabled), .SideBar button:hover {
+    background-color: rgba(255,255,255, 0.1);
+}
+
+.TopBar {
+    position: fixed;
+    background: linear-gradient(to right, #7C4DFF, #B388FF);
+    width: 100%;
+    height: 7%;
+    color: white;
+    text-align: left;
+}
+
+.TopBar * {
+    display: inline;
+}
+
+.TopBar .img {
+    height: 5vh !important;
+    width: 5vh !important;
+    margin: 0.75vh 1vw;;
+    vertical-align: middle;
+}
+
+.TopBar h1 {
+    margin: 0.75vh 0;
+    font-weight: bold;
+    font-size: 3.5vh;
+    vertical-align: middle;
+}

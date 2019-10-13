@@ -1,0 +1,49 @@
+.Login .main {
+    background: linear-gradient(to right, #7C4DFF, #B388FF);
+    width: 100%;
+    height: 100%;
+    left: 0 !important;
+    top: 0 !important;
+}
+
+.Login .main h1 {
+    color: white;
+    text-align: center;
+}
+
+.Login .form-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Login form {
+    background-color: rgb(100,100,100);
+    padding: 30px;
+    width: 400px;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+.Login input[type=text], input[type=password] {
+    background-color: transparent;
+    display: block;
+    border-color: rgb(140,140,140) !important;
+    margin: 10px 0;
+}
+
+.Login input:focus {
+    border-color: #B388FF !important;
+    color: #B388FF !important;
+}
+
+.Login input[type=submit] {
+    background-color: #B388FF !important;
+}
+
+.Login input {
+    box-sizing: border-box;
+    padding: 10px !important;
+    width: 100%;
+}
