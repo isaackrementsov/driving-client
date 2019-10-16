@@ -71,10 +71,14 @@
     transition: ease-in-out 0.2s;
 }
 
-.main input:focus, .main button:focus, .main select:focus {
+.main input:focus:not([type=submit]), .main select:focus {
     outline: none;
     border: 1px #7C4DFF solid;
     color: #7C4DFF;
+}
+
+.main input[type=submit]:focus, .main button:focus {
+    outline: none;
 }
 
 .main button.add {

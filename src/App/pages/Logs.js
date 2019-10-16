@@ -116,7 +116,7 @@ class CreateLog extends Component {
         let users = usArr.map(user => <option key={user._id} value={user._id}>{user.username}</option>);
         let rides = this.state.rides.map((r, j) => <Ride key={j} i={j} ride={r}/>);
 
-        if(this.props.users) this.state.user = this.props.users[0]._id;
+        if(this.props.users && this.state.user === '') this.state.user = this.props.users[0]._id;
 
         return (
             <tr key={1}>

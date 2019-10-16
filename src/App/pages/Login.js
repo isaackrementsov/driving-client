@@ -25,7 +25,7 @@ export default class Login extends Component {
                     <div className="form-container">
                         <h1>Login to Your Account</h1>
                         <form onSubmit={this.login}>
-                            {this.state.error && <p style={{color: '#FF5252'}}>{this.state.error}</p>}
+                            {this.state.error && <p style={{color: '#FF5252', marginTop: 0}}>{this.state.error}</p>}
                             <label>
                                 Username
                                 <input type="text" name="username" value={this.state.username} onChange={this.handleInput}/>

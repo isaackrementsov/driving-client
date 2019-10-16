@@ -55,7 +55,7 @@ class CardFormInternal extends Component {
                     <div className="error" role="alert">
                         {this.state.errorMessage}
                     </div>
-                    <button>Pay</button>
+                    <button onClick={this.props.handlePress}>Pay</button>
                 </form>
             </div>
         );
@@ -70,7 +70,7 @@ export default class CardInput extends Component {
         return (
             <StripeProvider apiKey={this.props.stripePublicKey}>
                 <Elements>
-                    <CardForm handleResult={this.props.handleResult}/>
+                    <CardForm handleResult={this.props.handleResult} handlePress={this.props.handlePress}/>
                 </Elements>
             </StripeProvider>
         );

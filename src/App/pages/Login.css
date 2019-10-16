@@ -34,7 +34,7 @@
     margin: 10px 0;
 }
 
-.Login input:focus {
+.Login input:focus:not([type=submit]) {
     border-color: #B388FF !important;
     color: #B388FF !important;
 }

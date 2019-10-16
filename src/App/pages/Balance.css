@@ -41,3 +41,8 @@
 .card-element {
     margin: 20px 0;
 }
+
+input[type=number].payment {
+    width: 60px;
+    vertical-align: middle;
+}

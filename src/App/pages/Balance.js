@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
 import CardInput from '../CardInput';
+import ReactLoading from 'react-loading';
 import './Balance.css';
 
 export default class Balance extends Component {
@@ -8,7 +9,7 @@ export default class Balance extends Component {
     constructor(props){
         super(props);
 
-        this.state = {balance: 0, token: localStorage.getItem('token')};
+        this.state = {balance: 0, token: localStorage.getItem('token'), charge: 0, loading: true};
     }
 
     componentDidMount(){
@@ -22,19 +23,17 @@ export default class Balance extends Component {
                 <SideBar history={this.props.history} page={'Balance'}/>
                 <div className="main balance">
                     <div>
-                        <h1 style={{color: this.state.balance < 0 ? '#FF5252' : '#69F0AE'}}>${this.state.balance.toFixed(2)}</h1>
+                        {this.state.loading ?
+                            <ReactLoading type={'spin'} color={'#B388FF'} height={'180px'} width={'180px'}/>
+                            :
+                            <h1 style={{color: this.state.balance < 0 ? '#FF5252' : '#69F0AE'}}>${this.state.balance.toFixed(2)}</h1>
+                        }
                         <p>Your balance</p>
                     </div>
-                    { this.state.balance < 0 ?
-                        <div>
-                            <h2>Pay with a card</h2>
-                            <CardInput stripePublicKey={'pk_test_gv0XVmjynqqObQnR7KHy57Go'} handleResult={this.makePayment}/>
-                        </div>
-                        :
-                        <div>
-                            <h2>You're all good with payments</h2>
-                        </div>
-                    }
+                    <div>
+                        <h2><input type="number" className="payment" value={this.state.charge} onChange={this.handleInput} name="charge"/> Pay with a card</h2>
+                        <CardInput stripePublicKey={'pk_test_gv0XVmjynqqObQnR7KHy57Go'} handleResult={this.makePayment} handlePress={this.startLoading}/>
+                    </div>
                 </div>
             </div>
         );
@@ -53,24 +52,41 @@ export default class Balance extends Component {
                     }
 
                     let balance = data.user.balance - logPrice;
-                    this.setState({balance});
+                    this.setState({balance, charge: (balance < 0 ? -1 : 1)*balance.toFixed(2), loading: false});
                 });
             }
         });
     }
 
+    startLoading = () => {
+        this.setState({loading: true});
+    }
+
     makePayment = stripeToken => {
-        fetch('/api/payment', {
-            method: 'POST',
-            body: JSON.stringify({
-                stripeToken: stripeToken.token.id,
-                token: this.state.token,
-                charge: -this.state.balance
-            }),
-            headers: {"Content-Type": "application/json"}
-        }).then(res => res.json()).then(data => {
-            this.refreshData();
-        });
+        if(this.state.charge > 0 && stripeToken.token){
+            fetch('/api/payment', {
+                method: 'POST',
+                body: JSON.stringify({
+                    stripeToken: stripeToken.token.id,
+                    token: this.state.token,
+                    charge: this.state.charge
+                }),
+                headers: {"Content-Type": "application/json"}
+            }).then(res => res.json()).then(data => {
+                this.setState({loading: false});
+
+                this.refreshData();
+            });
+        }else{
+            this.setState({loading: false});
+        }
+    }
+
+    handleInput = e => {
+        let name = e.target.name;
+        let val = e.target.value;
+
+        this.setState({[name]: val});
     }
 
 }
