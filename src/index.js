@@ -11,6 +11,6 @@ render((
     </BrowserRouter>
 ), document.getElementById('root'));
 
-let prefix = 'https://api.rideshare.us.to';
+const prefix = process.env.NODE_ENV == 'production' ? 'https://api.rideshare.us.to' : '';
 
 export default prefix;

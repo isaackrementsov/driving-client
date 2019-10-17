@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TopBar } from '../Nav.js';
-import prefix from '../../index.js';
+import prefix from '../../static.js';
 import './Login.css';
 
 export default class Login extends Component {

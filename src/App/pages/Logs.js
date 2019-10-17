@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
 import { PlusCircleIcon, WeatherSunnyIcon, WeatherSunsetIcon } from '@icons/material';
-import prefix from '../../index.js';
+import prefix from '../../static.js';
 
 export default class Logs extends Component {
 
@@ -24,6 +24,7 @@ export default class Logs extends Component {
     }
 
     render(){
+        console.log(prefix)
         let logs = this.state.logs.length > 0 ? this.state.logs.map(log => <Log key={log._id} entry={log} refresh={this.refreshLogs} admin={this.state.admin}/>) : [];
 
         return (

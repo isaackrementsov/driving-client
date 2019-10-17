@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
 import CardInput from '../CardInput';
 import ReactLoading from 'react-loading';
-import prefix from '../../index.js';
+import prefix from '../../static.js';
 import './Balance.css';
 
 export default class Balance extends Component {

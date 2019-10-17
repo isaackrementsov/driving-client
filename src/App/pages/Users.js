@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
-import prefix from '../../index.js';
+import prefix from '../../static.js';
 
 export default class Users extends Component {
 
