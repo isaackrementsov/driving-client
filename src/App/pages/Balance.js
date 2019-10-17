@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
 import CardInput from '../CardInput';
 import ReactLoading from 'react-loading';
+import prefix from '../../index.js';
 import './Balance.css';
 
 export default class Balance extends Component {
@@ -40,7 +41,7 @@ export default class Balance extends Component {
     }
 
     refreshData = () => {
-        fetch(`/api/user?token=${this.state.token}`).then(res => res.json()).then(data => {
+        fetch(`${prefix}/api/user?token=${this.state.token}`).then(res => res.json()).then(data => {
             if(data.user){
                 fetch(`/api/logs?userToken=${this.state.token}`).then(res => res.json()).then(logData => {
                     let logPrice = 0;
@@ -64,7 +65,7 @@ export default class Balance extends Component {
 
     makePayment = stripeToken => {
         if(this.state.charge > 0 && stripeToken.token){
-            fetch('/api/payment', {
+            fetch(prefix + '/api/payment', {
                 method: 'POST',
                 body: JSON.stringify({
                     stripeToken: stripeToken.token.id,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TopBar } from '../Nav.js';
+import prefix from '../../index.js';
 import './Login.css';
 
 export default class Login extends Component {
@@ -52,7 +53,7 @@ export default class Login extends Component {
     login = e => {
         e.preventDefault();
 
-        fetch('/api/login', {
+        fetch(prefix + '/api/login', {
             method: 'POST',
             body: JSON.stringify({username: this.state.username, password: this.state.password}),
             headers: {"Content-Type": "application/json"}

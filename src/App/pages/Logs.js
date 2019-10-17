@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
 import { PlusCircleIcon, WeatherSunnyIcon, WeatherSunsetIcon } from '@icons/material';
+import prefix from '../../index.js';
 
 export default class Logs extends Component {
 
@@ -50,10 +51,10 @@ export default class Logs extends Component {
     }
 
     refreshLogs = () => {
-        fetch('/api/logs').then(res => res.json()).then(logsData => {
+        fetch(prefix + '/api/logs').then(res => res.json()).then(logsData => {
             this.setState({logs: logsData.logs});
 
-            fetch('/api/users?admin=false').then(res => res.json()).then(data => {
+            fetch(prefix + '/api/users?admin=false').then(res => res.json()).then(data => {
                 this.setState({users: data.users});
             });
         });
@@ -86,7 +87,7 @@ class Log extends Component {
     }
 
     deleteUser = e => {
-        fetch(`/api/logs/delete/${this.state.entry._id}`, {
+        fetch(`${prefix}/api/logs/delete/${this.state.entry._id}`, {
             method: 'DELETE'
         }).then(res => res.json()).then(data => {
             this.props.refresh();
@@ -157,7 +158,7 @@ class CreateLog extends Component {
         e.preventDefault();
 
         if(!(this.state.date === '' || this.state.user === '' || this.state.rides.length === 0)){
-            fetch('/api/logs/create', {
+            fetch(prefix + '/api/logs/create', {
                 method: 'POST',
                 body: JSON.stringify({
                     date: this.state.date,

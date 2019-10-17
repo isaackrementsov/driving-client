@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SideBar, TopBar } from '../Nav';
+import prefix from '../../index.js';
 
 export default class Users extends Component {
 
@@ -51,7 +52,7 @@ export default class Users extends Component {
     }
 
     refreshUsers = () => {
-        fetch('/api/users').then(res => res.json()).then(users => {
+        fetch(prefix + '/api/users').then(res => res.json()).then(users => {
             this.setState({users: users.users});
         });
     }
@@ -104,7 +105,7 @@ class Log extends Component {
     }
 
     saveChanges = e => {
-        fetch(`/api/users/update/${this.state.user._id}`, {
+        fetch(`${prefix}/api/users/update/${this.state.user._id}`, {
             method: 'PATCH',
             body: JSON.stringify({balance: this.state.balance}),
             headers: {"Content-Type": "application/json"}
@@ -114,7 +115,7 @@ class Log extends Component {
     }
 
     deleteUser = e => {
-        fetch(`/api/users/delete/${this.state.user._id}`, {
+        fetch(`${prefix}/api/users/delete/${this.state.user._id}`, {
             method: 'DELETE'
         }).then(res => res.json()).then(data => {
             this.props.refresh();
@@ -157,7 +158,7 @@ class CreateLog extends Component {
         e.preventDefault();
 
         if(!(this.state.username === '' || this.state.password === '' || this.state.balance === '')){
-            fetch('/api/users/create', {
+            fetch(prefix + '/api/users/create', {
                 method: 'POST',
                 body: JSON.stringify({
                     username: this.state.username,

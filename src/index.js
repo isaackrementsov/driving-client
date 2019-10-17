@@ -10,3 +10,7 @@ render((
         <App/>
     </BrowserRouter>
 ), document.getElementById('root'));
+
+let prefix = 'https://api.rideshare.us.to';
+
+export default prefix;
