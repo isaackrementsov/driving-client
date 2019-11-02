@@ -39,6 +39,11 @@
     left: 220px;
 }
 
+.main:not(.full){
+    max-height: 85%;
+    overflow: auto;
+}
+
 .main .small-inputs {
     display: inline;
 }
@@ -107,4 +112,9 @@
 .main input[type=submit].secondary:hover, .main button.secondary:hover {
     color: white;
     background-color: #7C4DFF;
+}
+
+button:disabled {
+    background-color: #D1C4E9;
+    cursor: default;
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { TopBar } from '../Nav.js';
 import prefix from '../../static.js';
 import './Login.css';
 
@@ -22,7 +21,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="App Login">
-                <div className="main">
+                <div className="main full">
                     <div className="form-container">
                         <h1>Login to Your Account</h1>
                         <form onSubmit={this.login}>

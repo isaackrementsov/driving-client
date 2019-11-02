@@ -55,7 +55,10 @@ class CardFormInternal extends Component {
                     <div className="error" role="alert">
                         {this.state.errorMessage}
                     </div>
-                    <button onClick={this.props.handlePress}>Pay</button>
+                    {this.props.current > this.props.min ?
+                        <button onClick={this.props.handlePress}>Pay</button>
+                        : <button disabled>Payment must be at least ${this.props.min}</button>
+                    }
                 </form>
             </div>
         );
@@ -70,7 +73,7 @@ export default class CardInput extends Component {
         return (
             <StripeProvider apiKey={this.props.stripePublicKey}>
                 <Elements>
-                    <CardForm handleResult={this.props.handleResult} handlePress={this.props.handlePress}/>
+                    <CardForm handleResult={this.props.handleResult} handlePress={this.props.handlePress} min={this.props.min} current={this.props.current}/>
                 </Elements>
             </StripeProvider>
         );

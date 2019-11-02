@@ -33,7 +33,13 @@ export default class Balance extends Component {
                     </div>
                     <div>
                         <h2><input type="number" className="payment" value={this.state.charge} onChange={this.handleInput} name="charge"/> Pay with a card</h2>
-                        <CardInput stripePublicKey={'pk_test_gv0XVmjynqqObQnR7KHy57Go'} handleResult={this.makePayment} handlePress={this.startLoading}/>
+                        <CardInput
+                            stripePublicKey={'pk_test_gv0XVmjynqqObQnR7KHy57Go'}
+                            handleResult={this.makePayment}
+                            handlePress={this.startLoading}
+                            min={50.00}
+                            current={this.state.charge}
+                        />
                     </div>
                 </div>
             </div>
