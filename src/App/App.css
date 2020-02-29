@@ -37,6 +37,7 @@
 .main {
     padding: 20px;
     left: 220px;
+    width: calc(100% - 260px);
 }
 
 .main:not(.full){
