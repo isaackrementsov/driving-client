@@ -13,7 +13,7 @@ export default class Login extends Component {
     componentDidMount(){
         let token = localStorage.getItem('token');
 
-        if(token !== 'null'){
+        if(token !== 'null' && token != null){
             this.props.history.push('/logs');
         }
     }
