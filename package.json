@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:3030",
   "dependencies": {
     "@icons/material": "^0.4.1",
     "react": "^16.10.2",
@@ -13,7 +13,7 @@
     "react-stripe-elements": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=8080 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
