@@ -24,7 +24,6 @@ export default class Logs extends Component {
     }
 
     render(){
-        console.log(prefix)
         let logs = this.state.logs.length > 0 ? this.state.logs.map(log => <Log key={log._id} entry={log} refresh={this.refreshLogs} admin={this.state.admin}/>) : [];
 
         return (

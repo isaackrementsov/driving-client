@@ -10,7 +10,13 @@ export default class Balance extends Component {
     constructor(props){
         super(props);
 
-        this.state = {balance: 0, token: localStorage.getItem('token'), charge: 0, loading: true};
+        this.state = {
+            balance: 0,
+            token: localStorage.getItem('token'),
+            charge: 0,
+            loading: true,
+            credits: []
+        };
     }
 
     componentDidMount(){
@@ -18,6 +24,8 @@ export default class Balance extends Component {
     }
 
     render(){
+        let credits = this.state.credits.length > 0 ? this.state.credits.map(c => <Log entry={c}/>) : [];
+
         return (
             <div className="App">
                 <TopBar title={'Balance'}/>
@@ -41,6 +49,22 @@ export default class Balance extends Component {
                             current={this.state.charge}
                         />
                     </div>
+                    {credits.length > 0 ?
+                        <table>
+                            <thead>
+                                <tr key={0}>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {credits}
+                            </tbody>
+                        </table>
+                        :
+                        <p>No recent credit changes</p>
+                    }
                 </div>
             </div>
         );
@@ -60,6 +84,10 @@ export default class Balance extends Component {
 
                     let balance = data.user.balance - logPrice;
                     this.setState({balance, charge: (balance < 0 ? -1 : 1)*balance.toFixed(2), loading: false});
+                });
+
+                fetch(`${prefix}/api/user/getCredits?loggedIn=true&token=${this.state.token}`).then(res => res.json()).then(creditData => {
+                    this.state.credits = creditData.credits;
                 });
             }
         });
@@ -94,6 +122,34 @@ export default class Balance extends Component {
         let val = e.target.value;
 
         this.setState({[name]: val});
+    }
+
+}
+
+class Log extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.state = {entry: props.entry};
+    }
+
+    componentDidMount(){
+
+    }
+
+    render(){
+        let entry = this.state.entry;
+        let date = new Date(entry.date);
+        let dateStr = `${date.getMonth() + 1}/${date.getDate() + 1}/${date.getFullYear()}`;
+
+        return (
+            <tr key={entry._id}>
+                <td>{dateStr}</td>
+                <td style={{color: entry.amount > 0 ? '#00C853' : '#FF5252'}}>{entry.amount > 0 ? '+' : '-'}${Math.abs(parseFloat(entry.amount)).toFixed(2)}</td>
+                <td>{entry.description}</td>
+            </tr>
+        );
     }
 
 }

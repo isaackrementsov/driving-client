@@ -119,3 +119,15 @@ button:disabled {
     background-color: #D1C4E9;
     cursor: default;
 }
+button.passive {
+    background-color: transparent;
+    border-style: hidden;
+    margin: 5px 10px;
+    font-weight: 300;
+    color: #D1C4E9;
+    transition: 0.2s ease-in-out;
+}
+button.passive:hover {
+    color: #7C4DFF;
+    text-decoration: underline;
+}

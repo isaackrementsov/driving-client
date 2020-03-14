@@ -81,7 +81,19 @@ class Log extends Component {
             <tr key={user._id}>
                 <td>{user.username}</td>
                 <td>{password}</td>
-                <td>$<input type="number" name="balance" value={this.state.balance} onChange={this.handleInput} onFocus={this.swapDelete} onBlur={this.swapDelete}/></td>
+                <td>{this.state.delete ?
+                    <span>${this.state.balance}<button onClick={this.swapDelete} className="passive">Change</button></span>
+                    :
+                    <span>
+                        <input type="number" name="credit" placeholder="Credit/Charge Amount" onChange={this.handleInput}/>
+                        <br/>
+                        <input style={{marginTop: '4px'}} type="text" name="description" placeholder="Reason" onChange={this.handleInput}/>
+                        <br/>
+                        <input name="date" type="date" onChange={this.handleInput}/>
+                        <br/>
+                        <button className="passive" onClick={this.swapDelete} style={{margin: '10px 0', marginBottom: 0}}>Cancel</button>
+                    </span>
+                }</td>
                 <td>{this.state.delete ?
                     <input type="submit" value="Delete" className="secondary" onClick={this.deleteUser}/>
                     :
@@ -98,23 +110,28 @@ class Log extends Component {
         this.setState({[name]: val});
     }
 
-    swapDelete = e => {
+    swapDelete = _e => {
         setTimeout(() => {
             this.setState({delete: !this.state.delete})
         }, this.state.delete ? 0 : 500)
     }
 
-    saveChanges = e => {
+    saveChanges = _e => {
         fetch(`${prefix}/api/users/update/${this.state.user._id}`, {
             method: 'PATCH',
-            body: JSON.stringify({balance: this.state.balance}),
+            body: JSON.stringify({
+                credit: this.state.credit,
+                description: this.state.description,
+                date: this.state.date
+            }),
             headers: {"Content-Type": "application/json"}
-        }).then(res => res.json()).then(data => {
+        }).then(res => res.json()).then(_data => {
+            this.setState({balance: (parseFloat(this.state.balance) + parseFloat(this.state.credit)).toFixed(2), delete: true});;
             this.props.refresh();
         });
     }
 
-    deleteUser = e => {
+    deleteUser = _e => {
         fetch(`${prefix}/api/users/delete/${this.state.user._id}`, {
             method: 'DELETE'
         }).then(res => res.json()).then(data => {
