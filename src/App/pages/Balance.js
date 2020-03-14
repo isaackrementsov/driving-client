@@ -72,6 +72,7 @@ export default class Balance extends Component {
 
     refreshData = () => {
         fetch(`${prefix}/api/user?token=${this.state.token}`).then(res => res.json()).then(data => {
+            console.log(data.user)
             if(data.user){
                 fetch(`/api/logs?userToken=${this.state.token}`).then(res => res.json()).then(logData => {
                     let logPrice = 0;
@@ -87,7 +88,7 @@ export default class Balance extends Component {
                 });
 
                 fetch(`${prefix}/api/user/getCredits?loggedIn=true&token=${this.state.token}`).then(res => res.json()).then(creditData => {
-                    this.state.credits = creditData.credits;
+                    this.setState({credits: creditData.credits});
                 });
             }
         });
